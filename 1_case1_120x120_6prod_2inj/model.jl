@@ -1,3 +1,4 @@
+using Revise
 using ResSimAD
 
 options = Dict()
@@ -12,9 +13,23 @@ options["fluid"] = "OW";
 options["sw"] = 0.1;
 options["po"] = 6000.;
 
-options["PVDO"] = ResSimAD.get_example_data("PVDO.DAT");
-options["PVTW"] = ResSimAD.get_example_data("PVTW.DAT");
-options["SWOF"] = ResSimAD.get_example_data("SWOF.DAT");
+options["PVCDO"] = Dict([
+    ("pref", 14.7),
+    ("bref", 1.03),
+    ("c", 0.0),
+    ("μref", 3.2),
+    ("cμ", 0.0),
+])
+
+options["PVTW"] = Dict([
+    ("pref", 14.7),
+    ("bref", 1.001),
+    ("c", 1.0e-6),
+    ("μref", 0.8),
+    ("cμ", 0.0),
+])
+
+options["SWOF"] = joinpath(@__DIR__, "SWOF.DAT");
 
 options["producers"] = [];
 num_prod = 6
