@@ -1,0 +1,109 @@
+-- Dead Oil Model --
+-- 2D case -- 
+
+VERBOSE
+ALL BRIEF /
+
+MODEL
+NATURAL DEADOIL /
+
+
+WELL_RATES_AT
+STC 
+--RC
+/
+
+INCLUDE
+Dimens.txt /
+
+DEPTH
+3280 /
+
+PORO
+0.2 /
+
+INCLUDE
+TransX.txt /
+
+INCLUDE
+TransY.txt /
+
+PERMZ
+1.0
+/
+
+INCLUDE
+PVT_DO.DAT
+/
+
+INCLUDE
+SCAL.DAT
+/
+
+RTEMP
+373.15 /
+/
+
+SCOND
+--p      t        g
+1.0135 288.89 9.80665e-5/
+/
+
+EQUIL
+--ref depth, ref pressure
+3280 200 /
+/
+
+
+PBUB
+80 /
+
+
+SWAT
+0.1 /
+--0.2 /
+
+
+FACILITY
+5e-3 30 1e+5 /
+/
+
+
+OUTPUT
+ASCII TIME "Output"
+/
+
+OUTPUTVARS
+pres sat viscosity mobility pv viscosity
+/
+
+INCLUDE
+WellDesc.txt
+--This was updated by Haoyu Tang.
+/
+
+
+
+TUNING
+1  30.0  *2  /
+/
+
+
+WCONINJE
+INJ1 WATER OPEN BHP 2* 250.000000 /
+INJ2 WATER OPEN BHP 2* 250.000000 /
+/
+
+WCONPROD
+PRD1 OPEN BHP 5* 150.000000/
+PRD2 OPEN BHP 5* 150.000000/
+PRD3 OPEN BHP 5* 150.000000/
+PRD4 OPEN BHP 5* 150.000000/
+/
+
+
+TSTEP
+10000/
+
+
+END

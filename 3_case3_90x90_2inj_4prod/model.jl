@@ -58,6 +58,7 @@ options["min_err"] = 1.0e-3
 ## 
 sim = Sim(options)
 
+
 runsim(sim)
 
 ## Compare results with ADGPRS
@@ -87,3 +88,16 @@ for ind = 1:4
     push!(plts, ppp)
 end
 plot(plts..., layout=(2,2))
+
+## Run step by step and retrieve information
+sim = Sim(options)
+
+λo = []
+for t in [10.0, 30.0, 50.0]
+    step_to(sim, t)
+    push!(λo, get_data(sim, "λo"))
+end
+
+
+f = value(sim.λo) ./ (value(sim.λo)+ value(sim.λw))
+
