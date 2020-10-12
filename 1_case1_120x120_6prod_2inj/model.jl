@@ -1,9 +1,7 @@
-using Revise
 using ResSimAD
 using HDF5
 using Plots
 using Statistics
-using ResSimAD.LinearSolver: BICGSTAB_ILU_DUNE_ISTL_Solver, setup_lsolver
 
 ## Load permeability
 permx = h5read(joinpath(@__DIR__, "perm.h5"), "data")
@@ -81,17 +79,8 @@ options["dt0"] = 0.1
 options["dt_max"] = 30.; options["t_end"] = 3000.0;
 options["min_err"] = 1.0e-3;
 
-options["linear_solver"] = "GMRES_ILU"
-
-
 ## Run simluation
 sim = Sim(options)
-
-runsim(sim)
-
-sim.lsolver = BICGSTAB_ILU_DUNE_ISTL_Solver()
-
-setup_lsolver(sim.lsolver, sim.reservoir.grid)
 
 runsim(sim)
 
