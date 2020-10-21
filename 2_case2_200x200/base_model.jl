@@ -1,3 +1,8 @@
+using ResSimAD
+using DelimitedFiles
+using Statistics
+using Random
+
 # Load logk
 logk = readdlm(joinpath(@__DIR__, "logk_gaussian_200x200.txt"))[:, 1]
 # scale and transform

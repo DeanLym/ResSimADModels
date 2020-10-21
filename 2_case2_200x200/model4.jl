@@ -95,7 +95,6 @@ display(p1)
 
 sim = Sim(options)
 
-
 # Run sim with random controls
 nt = 15
 for it = 1:nt
